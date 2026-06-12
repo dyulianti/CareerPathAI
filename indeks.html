@@ -616,6 +616,11 @@ body{font-family:var(--font);background:var(--gray-50);color:var(--gray-900);fon
 /* ────────────────────────────────────────────────
    AUTH SYSTEM (localStorage-based)
 ────────────────────────────────────────────────── */
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  base: '/CareerPathAI/'
+})
 const DB_KEY = 'cpai_users';
 const SESSION_KEY = 'cpai_session';
 
