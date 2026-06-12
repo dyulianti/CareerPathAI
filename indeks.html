@@ -1,0 +1,1521 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerPath AI — Temukan Karier Terbaikmu</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue-50:#E6F1FB;--blue-100:#B5D4F4;--blue-300:#378ADD;--blue-600:#185FA5;--blue-900:#042C53;
+  --purple-50:#EEEDFE;--purple-100:#CECBF6;--purple-600:#534AB7;--purple-900:#26215C;
+  --teal-50:#E1F5EE;--teal-600:#0F6E56;
+  --amber-50:#FAEEDA;--amber-600:#854F0B;
+  --coral-50:#FAECE7;--coral-600:#993C1D;
+  --green-50:#EAF3DE;--green-200:#C0DD97;--green-600:#3B6D11;--green-800:#27500A;
+  --gray-50:#F7F7F5;--gray-100:#EDEDE8;--gray-200:#D3D1C7;--gray-500:#888780;--gray-700:#5F5E5A;--gray-900:#2C2C2A;
+  --white:#fff;
+  --r-sm:6px;--r-md:8px;--r-lg:12px;--r-xl:16px;
+  --sh-sm:0 1px 3px rgba(0,0,0,.08);--sh-md:0 4px 16px rgba(0,0,0,.10);
+  --tr:.18s ease;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--gray-50);color:var(--gray-900);font-size:15px;line-height:1.6;min-height:100vh}
+.app{display:flex;flex-direction:column;min-height:100vh}
+
+/* NAV */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-200);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{font-size:17px;font-weight:700;color:var(--gray-900);letter-spacing:-.3px;cursor:pointer;white-space:nowrap}
+.logo span{color:var(--blue-600)}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-btn{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--r-md);background:none;border:none;cursor:pointer;font-size:13px;font-weight:500;color:var(--gray-700);transition:background var(--tr),color var(--tr);white-space:nowrap;font-family:var(--font)}
+.nav-btn:hover{background:var(--gray-100);color:var(--gray-900)}
+.nav-btn.active{background:var(--blue-50);color:var(--blue-600)}
+.nav-btn svg{width:15px;height:15px;flex-shrink:0}
+.nav-cta{padding:8px 16px;border-radius:var(--r-md);background:var(--blue-600);color:#fff;font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:background var(--tr)}
+.nav-cta:hover{background:var(--blue-900)}
+
+/* SCREENS */
+.screen{display:none;flex:1;animation:fadeIn .2s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.page{max-width:960px;margin:0 auto;padding:36px 20px 80px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;border:none;cursor:pointer;font-family:var(--font);font-weight:600;border-radius:var(--r-md);transition:all var(--tr)}
+.btn-primary{background:var(--blue-600);color:#fff;padding:11px 24px;font-size:14px;box-shadow:0 2px 8px rgba(24,95,165,.25)}
+.btn-primary:hover{background:var(--blue-900);transform:translateY(-1px)}
+.btn-primary:disabled{background:var(--gray-200);color:var(--gray-500);cursor:not-allowed;transform:none;box-shadow:none}
+.btn-outline{background:var(--white);color:var(--gray-900);border:1px solid var(--gray-200);padding:11px 24px;font-size:14px}
+.btn-outline:hover{border-color:var(--gray-500);background:var(--gray-50)}
+.btn-ghost{background:none;color:var(--gray-700);border:1px solid var(--gray-200);padding:9px 18px;font-size:13px}
+.btn-ghost:hover{background:var(--gray-100)}
+
+/* SECTION HEADER */
+.sec-head{margin-bottom:24px}
+.sec-head h2{font-size:20px;font-weight:700;margin-bottom:4px}
+.sec-head p{font-size:13.5px;color:var(--gray-500)}
+
+/* CARD */
+.card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-lg);box-shadow:var(--sh-sm)}
+
+/* ── HOME ── */
+.hero{background:linear-gradient(135deg,#E6F1FB 0%,#EEEDFE 50%,#E1F5EE 100%);border-radius:var(--r-xl);padding:52px 36px 44px;text-align:center;margin-bottom:40px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(55,138,221,.1) 0%,transparent 70%);border-radius:50%}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-100);color:var(--blue-900);font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:18px}
+.hero h1{font-size:clamp(24px,4vw,36px);font-weight:700;line-height:1.2;letter-spacing:-.5px;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--blue-600)}
+.hero p{font-size:15px;color:var(--gray-700);max-width:460px;margin:0 auto 28px;line-height:1.65}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.stat-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-lg);padding:20px;text-align:center;box-shadow:var(--sh-sm)}
+.stat-val{font-size:26px;font-weight:700;color:var(--blue-600)}
+.stat-lbl{font-size:12px;color:var(--gray-500);margin-top:3px}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.feat-card{padding:18px;transition:box-shadow var(--tr),transform var(--tr)}
+.feat-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
+.feat-icon{width:38px;height:38px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.feat-icon svg{width:19px;height:19px}
+.feat-card h3{font-size:13.5px;font-weight:600;margin-bottom:5px}
+.feat-card p{font-size:12.5px;color:var(--gray-500);line-height:1.5}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:40px}
+.steps-grid::before{content:'';position:absolute;top:19px;left:12.5%;width:75%;height:2px;background:var(--gray-200);z-index:0}
+.step-item{text-align:center;z-index:1;padding:0 6px}
+.step-bubble{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin:0 auto 10px;background:var(--white);border:2px solid var(--blue-300);color:var(--blue-600)}
+.step-item h4{font-size:13px;font-weight:600;margin-bottom:3px}
+.step-item p{font-size:12px;color:var(--gray-500)}
+
+/* ── TES ── */
+.tes-wrap{display:grid;grid-template-columns:200px 1fr;gap:20px}
+.tes-sidebar{padding:18px;height:fit-content;position:sticky;top:80px}
+.tes-sidebar h3{font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.tstep{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.tstep:last-child{border:none}
+.tdot{width:25px;height:25px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.tdot-done{background:var(--green-200);color:var(--green-800)}
+.tdot-active{background:var(--blue-100);color:var(--blue-600);border:2px solid var(--blue-300)}
+.tdot-todo{background:var(--gray-100);color:var(--gray-500)}
+.tstep-meta h4{font-size:12.5px;font-weight:500}
+.tstep-meta p{font-size:11px;color:var(--gray-500)}
+.tes-main{background:var(--white);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-sm)}
+.prog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-head span{font-size:13px;color:var(--gray-500)}
+.prog-bar{height:5px;background:var(--gray-100);border-radius:100px;overflow:hidden;margin-bottom:20px}
+.prog-fill{height:100%;background:var(--blue-600);border-radius:100px;transition:width .4s ease}
+.q-card{padding:22px;margin-bottom:14px}
+.q-card h3{font-size:15px;font-weight:600;margin-bottom:16px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.choice{padding:11px 13px;border-radius:var(--r-md);border:1.5px solid var(--gray-200);background:var(--white);font-size:13px;color:var(--gray-700);cursor:pointer;text-align:left;display:flex;align-items:center;gap:7px;font-family:var(--font);transition:all var(--tr)}
+.choice svg{width:14px;height:14px;flex-shrink:0;opacity:.5}
+.choice:hover:not(.sel){border-color:var(--blue-300);background:var(--blue-50)}
+.choice.sel{border-color:var(--blue-600);background:var(--blue-50);color:var(--blue-900);font-weight:600}
+.choice.sel svg{opacity:1}
+.tes-nav{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.tes-info{font-size:12px;color:var(--gray-500);text-align:center;padding:10px 0}
+
+/* ── HASIL ── */
+.filter-bar{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.ftab{padding:7px 15px;border-radius:100px;border:1px solid var(--gray-200);background:var(--white);font-size:12.5px;color:var(--gray-700);cursor:pointer;font-family:var(--font);transition:all var(--tr)}
+.ftab.active{background:var(--blue-600);color:#fff;border-color:var(--blue-600)}
+.ftab:hover:not(.active){border-color:var(--blue-300);color:var(--blue-600)}
+.career-list{display:flex;flex-direction:column;gap:10px}
+.c-card{padding:18px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:box-shadow var(--tr),transform var(--tr),border-color var(--tr)}
+.c-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
+.c-card.top{border:2px solid var(--blue-600)}
+.c-card.hidden{display:none}
+.c-icon{width:46px;height:46px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-icon svg{width:22px;height:22px}
+.c-body{flex:1;min-width:0}
+.c-name-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;flex-wrap:wrap}
+.c-name{font-size:15px;font-weight:600}
+.badge-top{display:inline-flex;align-items:center;gap:3px;background:var(--blue-100);color:var(--blue-900);font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.c-desc{font-size:12.5px;color:var(--gray-500);line-height:1.5;margin-bottom:9px}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{background:var(--gray-100);color:var(--gray-700);font-size:11.5px;padding:3px 9px;border-radius:100px}
+.c-score{text-align:center;flex-shrink:0;min-width:60px}
+.score-pct{font-size:24px;font-weight:700;color:var(--blue-600);line-height:1}
+.score-lbl{font-size:11px;color:var(--gray-500);margin-top:2px}
+.no-result{text-align:center;padding:48px 20px;color:var(--gray-500)}
+
+/* ── ROADMAP ── */
+.rm-header{display:flex;align-items:center;gap:14px;padding:18px;margin-bottom:24px}
+.rm-ico{width:50px;height:50px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--blue-50)}
+.rm-ico svg{width:24px;height:24px}
+.rm-meta{flex:1}
+.rm-meta h2{font-size:18px;font-weight:700;margin-bottom:2px}
+.rm-meta p{font-size:12.5px;color:var(--gray-500)}
+.rm-phases{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.phase-card{padding:18px}
+.phase-num{width:26px;height:26px;border-radius:50%;background:var(--blue-600);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:9px}
+.phase-title{font-size:14px;font-weight:600;margin-bottom:2px}
+.phase-dur{font-size:12px;color:var(--gray-500);margin-bottom:12px;display:flex;align-items:center;gap:4px}
+.phase-dur svg{width:12px;height:12px}
+.sk-row{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--gray-100)}
+.sk-row:last-child{border:none}
+.sk-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-300);flex-shrink:0}
+.sk-name{font-size:13px;flex:1}
+.lv{font-size:11px;font-weight:600;padding:2px 8px;border-radius:100px;white-space:nowrap}
+.lv-d{background:var(--green-50);color:var(--green-600)}
+.lv-m{background:var(--amber-50);color:var(--amber-600)}
+.lv-l{background:var(--purple-50);color:var(--purple-600)}
+.rm-select{margin-bottom:20px}
+.rm-select label{font-size:13px;font-weight:600;color:var(--gray-700);margin-right:8px}
+.rm-select select{padding:7px 12px;border-radius:var(--r-md);border:1px solid var(--gray-200);font-size:13px;font-family:var(--font);background:var(--white);cursor:pointer;outline:none}
+.rm-select select:focus{border-color:var(--blue-300)}
+.rm-cta{text-align:center;margin-top:28px}
+
+/* ── TREN ── */
+.trend-list{display:flex;flex-direction:column;gap:9px}
+.trend-card{padding:14px 18px;display:flex;align-items:center;gap:14px;transition:box-shadow var(--tr)}
+.trend-card:hover{box-shadow:var(--sh-md)}
+.trend-card.hidden{display:none}
+.tr-ico{width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tr-ico svg{width:20px;height:20px}
+.tr-info{flex:1;min-width:0}
+.tr-name{font-size:14px;font-weight:600;margin-bottom:2px}
+.tr-sub{font-size:12px;color:var(--gray-500)}
+.tr-bar-wrap{width:110px;flex-shrink:0}
+.tr-bar-bg{height:5px;background:var(--gray-100);border-radius:100px;overflow:hidden}
+.tr-bar-fill{height:100%;background:var(--green-200);border-radius:100px}
+.tr-pct-lbl{font-size:10px;color:var(--gray-500);text-align:right;margin-top:2px}
+.grow-badge{font-size:13px;font-weight:700;color:var(--green-600);background:var(--green-50);padding:4px 10px;border-radius:100px;flex-shrink:0}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:var(--r-xl);max-width:520px;width:100%;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;cursor:pointer;color:var(--gray-500);font-size:20px;line-height:1;font-family:var(--font)}
+.modal-close:hover{color:var(--gray-900)}
+.modal h2{font-size:18px;font-weight:700;margin-bottom:6px}
+.modal p{font-size:13.5px;color:var(--gray-500);margin-bottom:18px}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--gray-900);color:#fff;padding:12px 20px;border-radius:var(--r-md);font-size:13.5px;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s ease;max-width:320px}
+.toast.show{transform:none;opacity:1}
+
+/* FOOTER */
+.footer{background:var(--gray-900);color:var(--gray-200);text-align:center;padding:20px;font-size:12.5px;margin-top:auto}
+.footer span{color:var(--blue-300);font-weight:600}
+
+/* ── AUTH SCREENS ── */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(135deg,#E6F1FB 0%,#EEEDFE 60%,#E1F5EE 100%)}
+.auth-card{background:var(--white);border-radius:var(--r-xl);box-shadow:0 8px 40px rgba(24,95,165,.13);padding:36px 32px;width:100%;max-width:420px;animation:fadeIn .25s ease}
+.auth-logo{text-align:center;font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:6px}
+.auth-logo span{color:var(--blue-600)}
+.auth-subtitle{text-align:center;font-size:13px;color:var(--gray-500);margin-bottom:28px}
+.auth-tabs{display:flex;background:var(--gray-100);border-radius:var(--r-md);padding:3px;margin-bottom:24px}
+.auth-tab{flex:1;padding:8px;text-align:center;font-size:13px;font-weight:600;border:none;background:none;cursor:pointer;border-radius:6px;color:var(--gray-500);font-family:var(--font);transition:all var(--tr)}
+.auth-tab.active{background:var(--white);color:var(--blue-600);box-shadow:var(--sh-sm)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12.5px;font-weight:600;color:var(--gray-700);margin-bottom:5px}
+.form-input{width:100%;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:var(--r-md);font-size:13.5px;font-family:var(--font);color:var(--gray-900);background:var(--white);outline:none;transition:border-color var(--tr)}
+.form-input:focus{border-color:var(--blue-300)}
+.form-input.error{border-color:#e05252}
+.form-err{font-size:11.5px;color:#c0392b;margin-top:4px}
+.form-hint{font-size:11.5px;color:var(--gray-500);margin-top:4px}
+.btn-full{width:100%;justify-content:center;padding:12px}
+.auth-divider{text-align:center;font-size:12px;color:var(--gray-500);margin:14px 0;position:relative}
+.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--gray-200)}
+.auth-divider::before{left:0}.auth-divider::after{right:0}
+.auth-switch{text-align:center;font-size:13px;color:var(--gray-500);margin-top:16px}
+.auth-switch a{color:var(--blue-600);font-weight:600;cursor:pointer;text-decoration:none}
+.auth-switch a:hover{text-decoration:underline}
+.pw-wrap{position:relative}
+.pw-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gray-500);padding:2px}
+.pw-toggle:hover{color:var(--gray-900)}
+.pw-toggle svg{width:15px;height:15px}
+.pw-strength{height:3px;border-radius:100px;margin-top:6px;transition:all .3s}
+.pw-str-0{background:var(--gray-200);width:0}
+.pw-str-1{background:#e05252;width:25%}
+.pw-str-2{background:var(--amber-600);width:50%}
+.pw-str-3{background:#3a9e68;width:75%}
+.pw-str-4{background:var(--green-600);width:100%}
+.pw-str-lbl{font-size:11px;margin-top:2px}
+
+/* ── PROFILE SCREEN ── */
+.profile-header{background:linear-gradient(135deg,var(--blue-50),var(--purple-50));border-radius:var(--r-xl);padding:28px;margin-bottom:24px;display:flex;align-items:center;gap:20px}
+.avatar{width:72px;height:72px;border-radius:50%;background:var(--blue-600);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#fff;flex-shrink:0;border:3px solid var(--white);box-shadow:var(--sh-md)}
+.profile-info h2{font-size:20px;font-weight:700;margin-bottom:3px}
+.profile-info p{font-size:13px;color:var(--gray-500)}
+.profile-badge{display:inline-flex;align-items:center;gap:5px;background:var(--blue-100);color:var(--blue-900);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:100px;margin-top:6px}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.profile-card{padding:18px}
+.profile-card h3{font-size:13px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.profile-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);font-size:13.5px}
+.profile-row:last-child{border:none}
+.profile-row .label{color:var(--gray-500);font-size:13px}
+.profile-row .val{font-weight:600;color:var(--gray-900)}
+.profile-edit-btn{background:none;border:1px solid var(--gray-200);border-radius:var(--r-md);padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font);color:var(--gray-700);transition:all var(--tr);display:inline-flex;align-items:center;gap:5px}
+.profile-edit-btn:hover{border-color:var(--blue-300);color:var(--blue-600)}
+.profile-edit-btn svg{width:13px;height:13px}
+.history-empty{text-align:center;padding:32px;color:var(--gray-500);font-size:13.5px}
+.history-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--gray-100)}
+.history-item:last-child{border:none}
+.history-icon{width:38px;height:38px;border-radius:var(--r-md);background:var(--blue-50);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.history-icon svg{width:17px;height:17px}
+.history-info{flex:1}
+.history-info .h-title{font-size:13.5px;font-weight:600}
+.history-info .h-sub{font-size:12px;color:var(--gray-500)}
+.history-score{font-size:16px;font-weight:700;color:var(--blue-600)}
+
+/* NAV AVATAR */
+.nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--blue-600);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-family:var(--font);flex-shrink:0;transition:opacity var(--tr)}
+.nav-avatar:hover{opacity:.85}
+.nav-login-btn{padding:8px 16px;border-radius:var(--r-md);background:var(--blue-600);color:#fff;font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:background var(--tr)}
+.nav-login-btn:hover{background:var(--blue-900)}
+
+/* RESPONSIVE */
+@media(max-width:760px){
+  .profile-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .steps-grid::before{display:none}
+  .tes-wrap{grid-template-columns:1fr}
+  .tes-sidebar{display:none}
+  .rm-phases{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .tr-bar-wrap{display:none}
+  .nav-cta{display:none}
+  .choices{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .feat-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .hero{padding:36px 20px 32px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo" onclick="nav('home')">Career<span>Path</span> AI</div>
+  <div class="nav-links">
+    <button class="nav-btn active" data-nav="home" onclick="nav('home')">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Beranda
+    </button>
+    <button class="nav-btn" data-nav="tes" onclick="nav('tes')">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><line x1="12" y1="11" x2="16" y2="11"/><line x1="12" y1="16" x2="16" y2="16"/><line x1="8" y1="11" x2="8.01" y2="11"/><line x1="8" y1="16" x2="8.01" y2="16"/></svg>
+      Tes Minat
+    </button>
+    <button class="nav-btn" data-nav="hasil" onclick="nav('hasil')">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Hasil
+    </button>
+    <button class="nav-btn" data-nav="roadmap" onclick="nav('roadmap')">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+      Roadmap
+    </button>
+    <button class="nav-btn" data-nav="tren" onclick="nav('tren')">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      Tren Karier
+    </button>
+  </div>
+  <div id="nav-auth-area">
+    <button class="nav-login-btn" onclick="nav('auth')">Masuk / Daftar</button>
+  </div>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<section id="s-home" class="screen active">
+<div class="page">
+  <div class="hero">
+    <div class="hero-badge">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Didukung Kecerdasan Buatan (AI)
+    </div>
+    <h1>Temukan karier yang<br><em>tepat untukmu</em></h1>
+    <p>Analisis minat dan kompetensimu, lalu dapatkan rekomendasi karier yang dipersonalisasi beserta roadmap pengembangan skill.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="nav('tes')">Mulai Tes Gratis</button>
+      <button class="btn btn-outline" onclick="openModal('about')">Pelajari Lebih Lanjut</button>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-val">10K+</div><div class="stat-lbl">Pengguna aktif</div></div>
+    <div class="stat-card"><div class="stat-val">200+</div><div class="stat-lbl">Jalur karier</div></div>
+    <div class="stat-card"><div class="stat-val">95%</div><div class="stat-lbl">Kepuasan pengguna</div></div>
+  </div>
+
+  <div class="sec-head"><h2>Semua yang kamu butuhkan</h2><p>Platform lengkap dari tes minat hingga roadmap karier siap kerja</p></div>
+  <div class="feat-grid">
+    <div class="card feat-card">
+      <div class="feat-icon" style="background:var(--blue-50)"><svg fill="none" stroke="#185FA5" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h3>Tes Minat & Potensi</h3>
+      <p>Kuisioner terstruktur untuk mengenali kepribadian, minat, dan kecenderungan bidang karier terbaikmu.</p>
+    </div>
+    <div class="card feat-card">
+      <div class="feat-icon" style="background:var(--purple-50)"><svg fill="none" stroke="#534AB7" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+      <h3>Analisis Skill</h3>
+      <p>Evaluasi kemampuan teknis dan soft skill secara mendalam berdasarkan standar industri.</p>
+    </div>
+    <div class="card feat-card">
+      <div class="feat-icon" style="background:var(--teal-50)"><svg fill="none" stroke="#0F6E56" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3>Rekomendasi Karier AI</h3>
+      <p>Rekomendasi profesi terbaik dengan persentase kecocokan berdasarkan profilmu.</p>
+    </div>
+    <div class="card feat-card">
+      <div class="feat-icon" style="background:var(--green-50)"><svg fill="none" stroke="#3B6D11" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></div>
+      <h3>Roadmap Skill</h3>
+      <p>Panduan langkah demi langkah skill yang harus dikuasai untuk mencapai profesi impianmu.</p>
+    </div>
+    <div class="card feat-card">
+      <div class="feat-icon" style="background:var(--amber-50)"><svg fill="none" stroke="#854F0B" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <h3>Tren Karier</h3>
+      <p>Data profesi paling diminati industri beserta kisaran gaji dan proyeksi pertumbuhannya.</p>
+    </div>
+    <div class="card feat-card">
+      <div class="feat-icon" style="background:var(--coral-50)"><svg fill="none" stroke="#993C1D" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h3>Komunitas & Mentor</h3>
+      <p>Terhubung dengan praktisi industri dan sesama pengguna yang membangun karier impian.</p>
+    </div>
+  </div>
+
+  <div class="sec-head"><h2>Cara kerjanya</h2><p>Empat langkah mudah menuju karier yang tepat</p></div>
+  <div class="steps-grid" style="margin-bottom:0">
+    <div class="step-item"><div class="step-bubble">1</div><h4>Isi Profil</h4><p>Lengkapi data diri dan latar belakang pendidikan</p></div>
+    <div class="step-item"><div class="step-bubble">2</div><h4>Ikuti Tes</h4><p>Jawab pertanyaan minat, kepribadian, dan kemampuan</p></div>
+    <div class="step-item"><div class="step-bubble">3</div><h4>Lihat Hasil</h4><p>AI menganalisis dan memberikan rekomendasi karier</p></div>
+    <div class="step-item"><div class="step-bubble">4</div><h4>Mulai Belajar</h4><p>Ikuti roadmap skill dan mulai perjalanan kariermu</p></div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ TES ═══════════ -->
+<section id="s-tes" class="screen">
+<div class="page">
+  <div class="sec-head"><h2>Tes Minat & Potensi</h2><p>Jawab dengan jujur untuk hasil rekomendasi yang paling akurat</p></div>
+  <div class="tes-wrap">
+    <!-- sidebar -->
+    <div id="tes-sidebar" class="card tes-sidebar">
+      <h3>Progress Tes</h3>
+      <div id="sidebar-steps"></div>
+    </div>
+    <!-- main -->
+    <div class="tes-main">
+      <div class="prog-head">
+        <span id="prog-label">Pertanyaan 1 dari 12</span>
+        <span id="prog-pct">0% selesai</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div id="tes-content"></div>
+      <div class="tes-nav" id="tes-nav">
+        <button class="btn btn-ghost" id="btn-prev" onclick="tesPrev()" style="visibility:hidden">← Kembali</button>
+        <div class="tes-info" id="tes-hint">Pilih salah satu jawaban untuk melanjutkan</div>
+        <button class="btn btn-primary" id="btn-next" onclick="tesNext()" disabled>Lanjut →</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ HASIL ═══════════ -->
+<section id="s-hasil" class="screen">
+<div class="page">
+  <div class="sec-head">
+    <h2>Hasil Rekomendasi Karier</h2>
+    <p id="hasil-subtitle">Berdasarkan analisis AI dari minat dan kompetensimu</p>
+  </div>
+  <div class="filter-bar" id="hasil-filters">
+    <button class="ftab active" data-cat="semua" onclick="filterKarier(this,'semua')">Semua</button>
+    <button class="ftab" data-cat="teknologi" onclick="filterKarier(this,'teknologi')">Teknologi</button>
+    <button class="ftab" data-cat="desain" onclick="filterKarier(this,'desain')">Desain</button>
+    <button class="ftab" data-cat="data" onclick="filterKarier(this,'data')">Data & Analitik</button>
+    <button class="ftab" data-cat="bisnis" onclick="filterKarier(this,'bisnis')">Bisnis & Marketing</button>
+    <button class="ftab" data-cat="keamanan" onclick="filterKarier(this,'keamanan')">Keamanan</button>
+  </div>
+  <div class="career-list" id="career-list"></div>
+</div>
+</section>
+
+<!-- ═══════════ ROADMAP ═══════════ -->
+<section id="s-roadmap" class="screen">
+<div class="page">
+  <div class="sec-head"><h2>Roadmap Pengembangan Skill</h2><p>Pilih profesi dan ikuti panduan step-by-step</p></div>
+  <div class="rm-select">
+    <label for="rm-picker">Profesi:</label>
+    <select id="rm-picker" onchange="renderRoadmap()"></select>
+  </div>
+  <div class="card rm-header" id="rm-header"></div>
+  <div class="rm-phases" id="rm-phases"></div>
+  <div class="rm-cta">
+    <button class="btn btn-primary" onclick="showToast('Fitur kursus segera hadir! 🚀')">Mulai Belajar Sekarang →</button>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ TREN ═══════════ -->
+<section id="s-tren" class="screen">
+<div class="page">
+  <div class="sec-head"><h2>Tren Karier 2026</h2><p>Profesi dengan pertumbuhan paling tinggi di industri saat ini</p></div>
+  <div class="filter-bar">
+    <button class="ftab active" data-tcat="semua" onclick="filterTren(this,'semua')">Semua Bidang</button>
+    <button class="ftab" data-tcat="teknologi" onclick="filterTren(this,'teknologi')">Teknologi</button>
+    <button class="ftab" data-tcat="kreatif" onclick="filterTren(this,'kreatif')">Kreatif</button>
+    <button class="ftab" data-tcat="bisnis" onclick="filterTren(this,'bisnis')">Bisnis</button>
+  </div>
+  <div class="trend-list" id="trend-list"></div>
+</div>
+</section>
+
+<!-- ═══════════ AUTH ═══════════ -->
+<section id="s-auth" class="screen">
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">Career<span>Path</span> AI</div>
+    <div class="auth-subtitle">Platform karier berbasis AI untuk mahasiswa & fresh graduate</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Masuk</button>
+      <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Daftar</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="form-login">
+      <div class="form-group">
+        <label for="l-email">Email</label>
+        <input type="email" id="l-email" class="form-input" placeholder="nama@email.com" autocomplete="email">
+        <div class="form-err" id="l-email-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="l-pass">Kata Sandi</label>
+        <div class="pw-wrap">
+          <input type="password" id="l-pass" class="form-input" placeholder="Masukkan kata sandi" autocomplete="current-password">
+          <button class="pw-toggle" type="button" onclick="togglePw('l-pass',this)" title="Tampilkan/sembunyikan">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="form-err" id="l-pass-err"></div>
+      </div>
+      <div class="form-err" id="l-global-err" style="margin-bottom:10px;font-weight:600"></div>
+      <button class="btn btn-primary btn-full" onclick="doLogin()">Masuk →</button>
+      <div class="auth-switch">Belum punya akun? <a onclick="switchAuthTab('register')">Daftar sekarang</a></div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="form-register" style="display:none">
+      <div class="form-group">
+        <label for="r-name">Nama Lengkap</label>
+        <input type="text" id="r-name" class="form-input" placeholder="Contoh: Dewi Yulianti" autocomplete="name">
+        <div class="form-err" id="r-name-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="r-email">Email</label>
+        <input type="email" id="r-email" class="form-input" placeholder="nama@email.com" autocomplete="email">
+        <div class="form-err" id="r-email-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="r-univ">Universitas / Institusi</label>
+        <input type="text" id="r-univ" class="form-input" placeholder="Contoh: Universitas Lampung">
+        <div class="form-err" id="r-univ-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="r-prodi">Program Studi</label>
+        <input type="text" id="r-prodi" class="form-input" placeholder="Contoh: Teknik Informatika">
+      </div>
+      <div class="form-group">
+        <label for="r-pass">Kata Sandi</label>
+        <div class="pw-wrap">
+          <input type="password" id="r-pass" class="form-input" placeholder="Min. 8 karakter" oninput="checkPwStrength(this.value)" autocomplete="new-password">
+          <button class="pw-toggle" type="button" onclick="togglePw('r-pass',this)" title="Tampilkan/sembunyikan">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="pw-strength pw-str-0" id="pw-bar"></div>
+        <div class="pw-str-lbl" id="pw-lbl" style="color:var(--gray-500)"></div>
+        <div class="form-err" id="r-pass-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="r-pass2">Konfirmasi Kata Sandi</label>
+        <div class="pw-wrap">
+          <input type="password" id="r-pass2" class="form-input" placeholder="Ulangi kata sandi" autocomplete="new-password">
+          <button class="pw-toggle" type="button" onclick="togglePw('r-pass2',this)" title="Tampilkan/sembunyikan">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="form-err" id="r-pass2-err"></div>
+      </div>
+      <div class="form-err" id="r-global-err" style="margin-bottom:10px;font-weight:600"></div>
+      <button class="btn btn-primary btn-full" onclick="doRegister()">Buat Akun →</button>
+      <div class="auth-switch">Sudah punya akun? <a onclick="switchAuthTab('login')">Masuk di sini</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ PROFIL ═══════════ -->
+<section id="s-profil" class="screen">
+<div class="page">
+  <div class="profile-header">
+    <div class="avatar" id="prof-avatar">?</div>
+    <div class="profile-info">
+      <h2 id="prof-name">—</h2>
+      <p id="prof-email">—</p>
+      <p id="prof-univ" style="font-size:12.5px;color:var(--gray-700);margin-top:2px"></p>
+      <div class="profile-badge">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Akun Terverifikasi
+      </div>
+    </div>
+    <div style="margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <button class="profile-edit-btn" onclick="openEditProfile()">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Edit Profil
+      </button>
+      <button class="profile-edit-btn" onclick="doLogout()" style="color:#c0392b;border-color:#f0c0c0">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Keluar
+      </button>
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="card profile-card">
+      <h3>Informasi Akun</h3>
+      <div class="profile-row"><span class="label">Nama</span><span class="val" id="pd-name">—</span></div>
+      <div class="profile-row"><span class="label">Email</span><span class="val" id="pd-email">—</span></div>
+      <div class="profile-row"><span class="label">Universitas</span><span class="val" id="pd-univ">—</span></div>
+      <div class="profile-row"><span class="label">Program Studi</span><span class="val" id="pd-prodi">—</span></div>
+      <div class="profile-row"><span class="label">Bergabung</span><span class="val" id="pd-joined">—</span></div>
+    </div>
+    <div class="card profile-card">
+      <h3>Statistik Aktivitas</h3>
+      <div class="profile-row"><span class="label">Tes Diselesaikan</span><span class="val" id="pd-tes">0</span></div>
+      <div class="profile-row"><span class="label">Roadmap Dilihat</span><span class="val" id="pd-rm">0</span></div>
+      <div class="profile-row"><span class="label">Karier Favorit</span><span class="val" id="pd-fav">—</span></div>
+      <div class="profile-row"><span class="label">Terakhir Aktif</span><span class="val" id="pd-last">—</span></div>
+    </div>
+  </div>
+
+  <div class="card profile-card">
+    <h3>Riwayat Tes</h3>
+    <div id="history-list"><div class="history-empty">Belum ada riwayat tes. <a style="color:var(--blue-600);cursor:pointer" onclick="nav('tes')">Mulai tes sekarang →</a></div></div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer"><p>© 2026 <span>CareerPath AI</span> · Dewi Yulianti (2413025011) · Technopreneurship · Universitas Lampung</p></footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ────────────────────────────────────────────────
+   AUTH SYSTEM (localStorage-based)
+────────────────────────────────────────────────── */
+const DB_KEY = 'cpai_users';
+const SESSION_KEY = 'cpai_session';
+
+function getUsers(){ try{ return JSON.parse(localStorage.getItem(DB_KEY)||'[]'); }catch{ return []; } }
+function saveUsers(u){ localStorage.setItem(DB_KEY, JSON.stringify(u)); }
+function getSession(){ try{ return JSON.parse(localStorage.getItem(SESSION_KEY)||'null'); }catch{ return null; } }
+function saveSession(u){ localStorage.setItem(SESSION_KEY, JSON.stringify(u)); }
+function clearSession(){ localStorage.removeItem(SESSION_KEY); }
+
+let currentUser = getSession();
+
+function updateNavAuth(){
+  const area = document.getElementById('nav-auth-area');
+  if(!area) return;
+  if(currentUser){
+    const initials = currentUser.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    area.innerHTML = `
+      <button class="nav-avatar" onclick="nav('profil')" title="Lihat profil">${initials}</button>`;
+  } else {
+    area.innerHTML = `<button class="nav-login-btn" onclick="nav('auth')">Masuk / Daftar</button>`;
+  }
+}
+
+function switchAuthTab(tab){
+  document.getElementById('form-login').style.display = tab==='login'?'block':'none';
+  document.getElementById('form-register').style.display = tab==='register'?'block':'none';
+  document.getElementById('tab-login').classList.toggle('active', tab==='login');
+  document.getElementById('tab-register').classList.toggle('active', tab==='register');
+  clearAuthErrors();
+}
+
+function clearAuthErrors(){
+  ['l-email-err','l-pass-err','l-global-err','r-name-err','r-email-err','r-univ-err','r-pass-err','r-pass2-err','r-global-err'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.textContent='';
+  });
+  document.querySelectorAll('.form-input').forEach(el=>el.classList.remove('error'));
+}
+
+function setErr(id, msg, inputId){
+  const el=document.getElementById(id); if(el) el.textContent=msg;
+  if(inputId){ const inp=document.getElementById(inputId); if(inp) inp.classList.add('error'); }
+}
+
+function togglePw(inputId, btn){
+  const inp=document.getElementById(inputId);
+  const show = inp.type==='password';
+  inp.type = show?'text':'password';
+  btn.innerHTML = show
+    ? `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+    : `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+}
+
+function checkPwStrength(pw){
+  let score=0;
+  if(pw.length>=8) score++;
+  if(/[A-Z]/.test(pw)) score++;
+  if(/[0-9]/.test(pw)) score++;
+  if(/[^A-Za-z0-9]/.test(pw)) score++;
+  const bar=document.getElementById('pw-bar');
+  const lbl=document.getElementById('pw-lbl');
+  if(!bar||!lbl) return;
+  bar.className='pw-strength pw-str-'+score;
+  const labels=['','Lemah','Cukup','Kuat','Sangat Kuat'];
+  const colors=['','#c0392b','var(--amber-600)','#3a9e68','var(--green-600)'];
+  lbl.textContent = pw.length ? labels[score]||'' : '';
+  lbl.style.color = colors[score]||'';
+}
+
+function doLogin(){
+  clearAuthErrors();
+  const email=(document.getElementById('l-email').value||'').trim().toLowerCase();
+  const pass=document.getElementById('l-pass').value||'';
+  let ok=true;
+  if(!email){ setErr('l-email-err','Email wajib diisi','l-email'); ok=false; }
+  else if(!/\S+@\S+\.\S+/.test(email)){ setErr('l-email-err','Format email tidak valid','l-email'); ok=false; }
+  if(!pass){ setErr('l-pass-err','Kata sandi wajib diisi','l-pass'); ok=false; }
+  if(!ok) return;
+
+  const users=getUsers();
+  const user=users.find(u=>u.email===email);
+  if(!user){ setErr('l-global-err','Email tidak terdaftar'); return; }
+  if(user.password !== btoa(pass)){ setErr('l-global-err','Kata sandi salah'); return; }
+
+  currentUser = {...user, password:undefined};
+  saveSession(currentUser);
+  updateNavAuth();
+  showToast('Selamat datang kembali, '+currentUser.name.split(' ')[0]+'! 👋');
+  // Jika tes sudah diselesaikan sebelum login, langsung ke hasil
+  if(tesDone){ nav('hasil'); } else { nav('home'); }
+}
+
+function doRegister(){
+  clearAuthErrors();
+  const name=(document.getElementById('r-name').value||'').trim();
+  const email=(document.getElementById('r-email').value||'').trim().toLowerCase();
+  const univ=(document.getElementById('r-univ').value||'').trim();
+  const prodi=(document.getElementById('r-prodi').value||'').trim();
+  const pass=document.getElementById('r-pass').value||'';
+  const pass2=document.getElementById('r-pass2').value||'';
+  let ok=true;
+  if(!name){ setErr('r-name-err','Nama lengkap wajib diisi','r-name'); ok=false; }
+  if(!email){ setErr('r-email-err','Email wajib diisi','r-email'); ok=false; }
+  else if(!/\S+@\S+\.\S+/.test(email)){ setErr('r-email-err','Format email tidak valid','r-email'); ok=false; }
+  if(!univ){ setErr('r-univ-err','Universitas wajib diisi','r-univ'); ok=false; }
+  if(pass.length<8){ setErr('r-pass-err','Minimal 8 karakter','r-pass'); ok=false; }
+  if(pass!==pass2){ setErr('r-pass2-err','Kata sandi tidak cocok','r-pass2'); ok=false; }
+  if(!ok) return;
+
+  const users=getUsers();
+  if(users.find(u=>u.email===email)){ setErr('r-global-err','Email ini sudah terdaftar'); return; }
+
+  const newUser={
+    id: 'u_'+Date.now(),
+    name, email, univ, prodi,
+    password: btoa(pass),
+    joined: new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}),
+    stats:{ tesCount:0, rmCount:0, lastActive: new Date().toLocaleDateString('id-ID') },
+    history:[]
+  };
+  users.push(newUser);
+  saveUsers(users);
+
+  currentUser = {...newUser, password:undefined};
+  saveSession(currentUser);
+  updateNavAuth();
+  showToast('Akun berhasil dibuat! Selamat bergabung 🎉');
+  if(tesDone){ nav('hasil'); } else { nav('home'); }
+}
+
+function doLogout(){
+  currentUser = null;
+  clearSession();
+  updateNavAuth();
+  tesDone = false; tesStep=0; tesAnswers=new Array(STEPS.length).fill(null);
+  scores={dev:0,data:0,ux:0,marketing:0,security:0};
+  showToast('Kamu telah keluar. Sampai jumpa! 👋');
+  nav('home');
+}
+
+function openEditProfile(){
+  if(!currentUser) return;
+  MODALS['editprofile'] = `
+    <h2>Edit Profil</h2>
+    <div class="form-group" style="margin-top:16px">
+      <label>Nama Lengkap</label>
+      <input type="text" id="ep-name" class="form-input" value="${currentUser.name||''}">
+    </div>
+    <div class="form-group">
+      <label>Universitas</label>
+      <input type="text" id="ep-univ" class="form-input" value="${currentUser.univ||''}">
+    </div>
+    <div class="form-group">
+      <label>Program Studi</label>
+      <input type="text" id="ep-prodi" class="form-input" value="${currentUser.prodi||''}">
+    </div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn btn-primary" onclick="saveEditProfile()">Simpan Perubahan</button>
+      <button class="btn btn-outline" onclick="closeModal()">Batal</button>
+    </div>`;
+  openModal('editprofile');
+}
+
+function saveEditProfile(){
+  if(!currentUser) return;
+  const name=(document.getElementById('ep-name').value||'').trim();
+  const univ=(document.getElementById('ep-univ').value||'').trim();
+  const prodi=(document.getElementById('ep-prodi').value||'').trim();
+  if(!name) return;
+
+  const users=getUsers();
+  const idx=users.findIndex(u=>u.id===currentUser.id);
+  if(idx>=0){
+    users[idx].name=name; users[idx].univ=univ; users[idx].prodi=prodi;
+    saveUsers(users);
+  }
+  currentUser={...currentUser, name, univ, prodi};
+  saveSession(currentUser);
+  updateNavAuth();
+  renderProfil();
+  closeModal();
+  showToast('Profil berhasil diperbarui! ✅');
+}
+
+function renderProfil(){
+  if(!currentUser){ nav('auth'); return; }
+  const u = currentUser;
+  const initials = u.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('prof-avatar').textContent = initials;
+  document.getElementById('prof-name').textContent = u.name;
+  document.getElementById('prof-email').textContent = u.email;
+  document.getElementById('prof-univ').textContent = u.univ + (u.prodi ? ' — ' + u.prodi : '');
+  document.getElementById('pd-name').textContent = u.name;
+  document.getElementById('pd-email').textContent = u.email;
+  document.getElementById('pd-univ').textContent = u.univ||'—';
+  document.getElementById('pd-prodi').textContent = u.prodi||'—';
+  document.getElementById('pd-joined').textContent = u.joined||'—';
+
+  // Stats from localStorage (fresh copy)
+  const users=getUsers();
+  const fresh = users.find(x=>x.id===u.id) || u;
+  const stats = fresh.stats || {};
+  document.getElementById('pd-tes').textContent = stats.tesCount||0;
+  document.getElementById('pd-rm').textContent = stats.rmCount||0;
+  document.getElementById('pd-fav').textContent = stats.favCareer||'—';
+  document.getElementById('pd-last').textContent = stats.lastActive||'—';
+
+  // History
+  const hist = fresh.history||[];
+  const histEl = document.getElementById('history-list');
+  if(hist.length===0){
+    histEl.innerHTML=`<div class="history-empty">Belum ada riwayat tes. <a style="color:var(--blue-600);cursor:pointer" onclick="nav('tes')">Mulai tes sekarang →</a></div>`;
+  } else {
+    histEl.innerHTML = hist.slice().reverse().map(h=>`
+      <div class="history-item">
+        <div class="history-icon"><svg fill="none" stroke="#185FA5" stroke-width="2" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
+        <div class="history-info"><div class="h-title">Tes Minat & Potensi</div><div class="h-sub">${h.date} · Karier teratas: ${h.topCareer}</div></div>
+        <div class="history-score">${h.topScore}%</div>
+      </div>`).join('');
+  }
+}
+
+function saveUserStats(topCareer, topScore){
+  if(!currentUser) return;
+  const users=getUsers();
+  const idx=users.findIndex(u=>u.id===currentUser.id);
+  if(idx<0) return;
+  if(!users[idx].stats) users[idx].stats={tesCount:0,rmCount:0};
+  users[idx].stats.tesCount = (users[idx].stats.tesCount||0)+1;
+  users[idx].stats.favCareer = topCareer;
+  users[idx].stats.lastActive = new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  if(!users[idx].history) users[idx].history=[];
+  users[idx].history.push({
+    date: new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}),
+    topCareer, topScore
+  });
+  saveUsers(users);
+  currentUser={...currentUser, stats:users[idx].stats, history:users[idx].history};
+  saveSession(currentUser);
+}
+
+function incrementRmStat(){
+  if(!currentUser) return;
+  const users=getUsers();
+  const idx=users.findIndex(u=>u.id===currentUser.id);
+  if(idx<0) return;
+  if(!users[idx].stats) users[idx].stats={tesCount:0,rmCount:0};
+  users[idx].stats.rmCount=(users[idx].stats.rmCount||0)+1;
+  users[idx].stats.lastActive=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  saveUsers(users);
+  currentUser={...currentUser,stats:users[idx].stats};
+  saveSession(currentUser);
+}
+
+
+const STEPS = [
+  /* 1 */
+  {
+    title:"Aktivitas Favorit",
+    q:"Dari keempat kegiatan berikut, mana yang paling sering kamu lakukan secara sukarela?",
+    choices:[
+      {t:"Menulis skrip, bot, atau bereksperimen dengan kode",        ico:"code",    scores:{dev:3,data:1,security:1}},
+      {t:"Membuat mockup, poster, atau merapikan tampilan aplikasi",  ico:"palette", scores:{ux:3,marketing:1}},
+      {t:"Menganalisis angka, grafik, atau tren dari data",           ico:"chart",   scores:{data:3,dev:1}},
+      {t:"Mencari celah keamanan atau mencoba hack sistem sendiri",   ico:"shield",  scores:{security:3,dev:1}}
+    ]
+  },
+  /* 2 */
+  {
+    title:"Reaksi terhadap Bug/Error",
+    q:"Saat sebuah sistem tidak berjalan sesuai harapan, reaksimu adalah…",
+    choices:[
+      {t:"Langsung buka terminal & baca log untuk debug",             ico:"code",    scores:{dev:3,security:2}},
+      {t:"Coba reproduksi masalah lalu buat laporan detail",          ico:"book",    scores:{data:2,security:2,dev:1}},
+      {t:"Pikirkan apakah UI-nya membingungkan pengguna",             ico:"palette", scores:{ux:3}},
+      {t:"Buat diagram alur untuk menemukan akar masalah",            ico:"chart",   scores:{data:2,marketing:1,dev:1}}
+    ]
+  },
+  /* 3 */
+  {
+    title:"Kekuatan Akademik",
+    q:"Mata kuliah atau bidang studi mana yang paling mudah kamu pahami?",
+    choices:[
+      {t:"Pemrograman, algoritma, atau matematika diskrit",           ico:"code",    scores:{dev:3,data:2,security:2}},
+      {t:"Desain grafis, tipografi, atau komunikasi visual",          ico:"palette", scores:{ux:4}},
+      {t:"Statistik, probabilitas, atau riset kuantitatif",           ico:"chart",   scores:{data:4,dev:1}},
+      {t:"Manajemen, pemasaran, atau komunikasi bisnis",              ico:"mic",     scores:{marketing:4,ux:1}}
+    ]
+  },
+  /* 4 */
+  {
+    title:"Proyek Impian",
+    q:"Jika kamu diberi waktu 3 bulan bebas, proyek apa yang ingin kamu bangun?",
+    choices:[
+      {t:"Aplikasi web/mobile yang menyelesaikan masalah nyata",      ico:"code",    scores:{dev:4,ux:1}},
+      {t:"Dashboard interaktif dari data publik yang menarik",        ico:"chart",   scores:{data:4,dev:1}},
+      {t:"Aplikasi dengan desain UI yang sangat intuitif & indah",    ico:"palette", scores:{ux:4}},
+      {t:"Sistem keamanan untuk mendeteksi serangan siber",           ico:"shield",  scores:{security:4,dev:1}}
+    ]
+  },
+  /* 5 */
+  {
+    title:"Cara Berpikir",
+    q:"Ketika memecahkan masalah kompleks, kamu cenderung…",
+    choices:[
+      {t:"Memecah masalah menjadi fungsi-fungsi kecil yang terstruktur", ico:"code",    scores:{dev:3,data:1,security:1}},
+      {t:"Membuat visualisasi atau diagram alur terlebih dahulu",         ico:"palette", scores:{ux:3,marketing:1}},
+      {t:"Mengumpulkan data dan mencari pola atau anomali",               ico:"chart",   scores:{data:4}},
+      {t:"Memetakan risiko dan skenario terburuk yang mungkin terjadi",   ico:"shield",  scores:{security:3,data:1}}
+    ]
+  },
+  /* 6 */
+  {
+    title:"Tools yang Digunakan",
+    q:"Tool atau software mana yang paling sering kamu buka sehari-hari?",
+    choices:[
+      {t:"VS Code, Git, atau terminal CLI",                            ico:"code",    scores:{dev:4,security:2}},
+      {t:"Figma, Adobe XD, atau Canva",                               ico:"palette", scores:{ux:4,marketing:1}},
+      {t:"Excel, Google Sheets, Tableau, atau SQL client",            ico:"chart",   scores:{data:4}},
+      {t:"Google Ads, Meta Ads Manager, atau Analytics",              ico:"mic",     scores:{marketing:4}}
+    ]
+  },
+  /* 7 */
+  {
+    title:"Lingkungan Kerja Ideal",
+    q:"Suasana kerja seperti apa yang membuat kamu paling produktif?",
+    choices:[
+      {t:"Sendiri, fokus, dengan headphone dan layar penuh kode",     ico:"user",    scores:{dev:3,data:2,security:3}},
+      {t:"Tim kreatif kecil yang saling memberi feedback desain",     ico:"users",   scores:{ux:4}},
+      {t:"Kolaborasi lintas divisi, data jadi dasar keputusan",       ico:"chart",   scores:{data:3,marketing:2}},
+      {t:"Dinamis, cepat, dengan banyak presentasi dan pitching",     ico:"zap",     scores:{marketing:4,ux:1}}
+    ]
+  },
+  /* 8 */
+  {
+    title:"Pendapat tentang Privasi Data",
+    q:"Ketika mendengar berita tentang kebocoran data besar, respons pertamamu adalah…",
+    choices:[
+      {t:"Ingin tahu celah teknis apa yang dieksploitasi",            ico:"shield",  scores:{security:4,dev:1}},
+      {t:"Penasaran berapa juta record yang bocor dan polanya",       ico:"chart",   scores:{data:3,security:1}},
+      {t:"Memikirkan dampak pada pengalaman dan kepercayaan user",    ico:"heart",   scores:{ux:3,marketing:1}},
+      {t:"Tertarik pada strategi komunikasi krisis brand tersebut",   ico:"mic",     scores:{marketing:3,ux:1}}
+    ]
+  },
+  /* 9 */
+  {
+    title:"Keahlian Komunikasi",
+    q:"Bagaimana kamu biasanya menjelaskan sesuatu yang rumit kepada orang lain?",
+    choices:[
+      {t:"Dengan diagram, wireframe, atau mockup visual",             ico:"palette", scores:{ux:3,marketing:1}},
+      {t:"Dengan contoh kode atau demo langsung",                     ico:"code",    scores:{dev:3,security:1}},
+      {t:"Dengan data, grafik, dan angka konkret",                    ico:"chart",   scores:{data:3,marketing:1}},
+      {t:"Dengan storytelling & narasi yang engaging",                ico:"mic",     scores:{marketing:4,ux:1}}
+    ]
+  },
+  /* 10 */
+  {
+    title:"Minat terhadap Tren Teknologi",
+    q:"Topik teknologi mana yang paling sering kamu ikuti beritanya?",
+    choices:[
+      {t:"Framework baru, bahasa pemrograman, dan arsitektur cloud",  ico:"code",    scores:{dev:4,security:1}},
+      {t:"AI generatif, model bahasa besar (LLM), dan analitik",      ico:"chart",   scores:{data:4,dev:1}},
+      {t:"Tren desain UI, aksesibilitas, dan riset pengguna",         ico:"palette", scores:{ux:4}},
+      {t:"Ancaman siber terbaru, zero-day, dan regulasi keamanan",    ico:"shield",  scores:{security:4,dev:1}}
+    ]
+  },
+  /* 11 */
+  {
+    title:"Pengalaman Kerja / Magang",
+    q:"Dari pengalaman kerja atau proyek yang pernah kamu jalani, peran mana yang paling terasa 'klop'?",
+    choices:[
+      {t:"Backend/frontend developer atau programmer",                ico:"code",    scores:{dev:4}},
+      {t:"Data analyst, business intelligence, atau riset",          ico:"chart",   scores:{data:4,dev:1}},
+      {t:"UI/UX designer atau product designer",                     ico:"palette", scores:{ux:4}},
+      {t:"Digital marketer, content strategist, atau brand manager", ico:"mic",     scores:{marketing:4}}
+    ]
+  },
+  /* 12 */
+  {
+    title:"Tujuan Karier 5 Tahun",
+    q:"Dalam 5 tahun ke depan, kamu paling ingin dikenal sebagai…",
+    choices:[
+      {t:"Software engineer andal di perusahaan teknologi top",       ico:"code",    scores:{dev:5}},
+      {t:"Data scientist atau AI engineer yang diakui industri",      ico:"chart",   scores:{data:5,dev:1}},
+      {t:"UX lead yang membangun produk berdampak jutaan pengguna",   ico:"palette", scores:{ux:5,marketing:1}},
+      {t:"Pakar keamanan siber bersertifikat & ethical hacker",       ico:"shield",  scores:{security:5}}
+    ]
+  }
+];
+
+const CAREERS = [
+  {
+    id:"dev", name:"Software Developer", cat:"teknologi", match:0,
+    desc:"Merancang, mengembangkan, dan memelihara perangkat lunak. Cocok untuk pemecah masalah yang berpikir sistematis.",
+    tags:["Python","JavaScript","React","Backend","API"],
+    iconBg:"var(--blue-50)", iconStroke:"#185FA5",
+    iconPath:`<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`
+  },
+  {
+    id:"data", name:"Data Analyst", cat:"data", match:0,
+    desc:"Mengolah dan menginterpretasi data untuk mendukung pengambilan keputusan bisnis berbasis fakta.",
+    tags:["SQL","Python","Tableau","Excel","Statistics"],
+    iconBg:"var(--purple-50)", iconStroke:"#534AB7",
+    iconPath:`<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>`
+  },
+  {
+    id:"ux", name:"UI/UX Designer", cat:"desain", match:0,
+    desc:"Mendesain antarmuka dan pengalaman pengguna yang intuitif, estetis, dan mudah digunakan.",
+    tags:["Figma","Prototyping","User Research","Wireframe"],
+    iconBg:"var(--teal-50)", iconStroke:"#0F6E56",
+    iconPath:`<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>`
+  },
+  {
+    id:"marketing", name:"Digital Marketing Specialist", cat:"bisnis", match:0,
+    desc:"Merancang dan menjalankan strategi pemasaran digital untuk meningkatkan jangkauan dan konversi brand.",
+    tags:["SEO","Google Ads","Analytics","Content","Social Media"],
+    iconBg:"var(--amber-50)", iconStroke:"#854F0B",
+    iconPath:`<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`
+  },
+  {
+    id:"security", name:"Cybersecurity Analyst", cat:"keamanan", match:0,
+    desc:"Melindungi sistem dan jaringan dari ancaman siber. Membutuhkan pemikiran analitis dan perhatian terhadap detail.",
+    tags:["Networking","Penetration Testing","Linux","SIEM"],
+    iconBg:"var(--coral-50)", iconStroke:"#993C1D",
+    iconPath:`<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`
+  }
+];
+
+const ROADMAPS = {
+  dev:{
+    title:"Software Developer",
+    est:"12–18 bulan",
+    phases:[
+      {num:1,title:"Fondasi Pemrograman",dur:"Bulan 1–3",skills:[
+        {n:"Dasar-dasar pemrograman",lv:"d"},{n:"HTML & CSS",lv:"d"},{n:"Git & Version Control",lv:"d"},{n:"Terminal / Command Line",lv:"d"}
+      ]},
+      {num:2,title:"Pengembangan Aktif",dur:"Bulan 4–8",skills:[
+        {n:"JavaScript / Python",lv:"m"},{n:"React / Node.js",lv:"m"},{n:"Database & SQL",lv:"m"},{n:"Algoritma & Struktur Data",lv:"m"}
+      ]},
+      {num:3,title:"Spesialisasi",dur:"Bulan 9–12",skills:[
+        {n:"REST API & Backend",lv:"l"},{n:"Cloud & Deployment (AWS/GCP)",lv:"l"},{n:"Testing & Debugging",lv:"m"},{n:"CI/CD Pipeline",lv:"l"}
+      ]},
+      {num:4,title:"Portofolio & Karier",dur:"Bulan 13–18",skills:[
+        {n:"Proyek portofolio nyata",lv:"l"},{n:"Open source contribution",lv:"l"},{n:"Persiapan wawancara teknis",lv:"l"},{n:"Personal branding (LinkedIn)",lv:"m"}
+      ]}
+    ]
+  },
+  data:{
+    title:"Data Analyst",
+    est:"9–12 bulan",
+    phases:[
+      {num:1,title:"Fondasi Data",dur:"Bulan 1–3",skills:[
+        {n:"Matematika & Statistik Dasar",lv:"d"},{n:"Excel & Google Sheets",lv:"d"},{n:"SQL Dasar",lv:"d"},{n:"Python Dasar",lv:"d"}
+      ]},
+      {num:2,title:"Analisis Data",dur:"Bulan 4–6",skills:[
+        {n:"Python Pandas & NumPy",lv:"m"},{n:"SQL Lanjutan",lv:"m"},{n:"Tableau / Power BI",lv:"m"},{n:"Statistik Inferensial",lv:"m"}
+      ]},
+      {num:3,title:"Data Lanjutan",dur:"Bulan 7–9",skills:[
+        {n:"Machine Learning Dasar",lv:"l"},{n:"Data Visualization",lv:"l"},{n:"A/B Testing",lv:"m"},{n:"Big Data Tools",lv:"l"}
+      ]},
+      {num:4,title:"Portofolio & Karier",dur:"Bulan 10–12",skills:[
+        {n:"Proyek analisis nyata",lv:"l"},{n:"Kaggle Competition",lv:"l"},{n:"Dashboard bisnis",lv:"l"},{n:"Storytelling dengan data",lv:"m"}
+      ]}
+    ]
+  },
+  ux:{
+    title:"UI/UX Designer",
+    est:"8–12 bulan",
+    phases:[
+      {num:1,title:"Fondasi Desain",dur:"Bulan 1–2",skills:[
+        {n:"Prinsip desain grafis",lv:"d"},{n:"Tipografi & Warna",lv:"d"},{n:"Figma Dasar",lv:"d"},{n:"User Research",lv:"d"}
+      ]},
+      {num:2,title:"UX Design",dur:"Bulan 3–5",skills:[
+        {n:"Wireframing",lv:"m"},{n:"Prototyping",lv:"m"},{n:"Usability Testing",lv:"m"},{n:"Information Architecture",lv:"m"}
+      ]},
+      {num:3,title:"UI Design",dur:"Bulan 6–8",skills:[
+        {n:"UI Design System",lv:"l"},{n:"Micro-interactions",lv:"l"},{n:"Responsive Design",lv:"m"},{n:"Accessibility (WCAG)",lv:"l"}
+      ]},
+      {num:4,title:"Portofolio & Karier",dur:"Bulan 9–12",skills:[
+        {n:"Case study portfolio",lv:"l"},{n:"Design handoff ke developer",lv:"l"},{n:"Freelance project",lv:"l"},{n:"Behance / Dribbble",lv:"m"}
+      ]}
+    ]
+  },
+  marketing:{
+    title:"Digital Marketing Specialist",
+    est:"6–10 bulan",
+    phases:[
+      {num:1,title:"Fondasi Marketing",dur:"Bulan 1–2",skills:[
+        {n:"Konsep digital marketing",lv:"d"},{n:"Google Analytics",lv:"d"},{n:"SEO Dasar",lv:"d"},{n:"Copywriting",lv:"d"}
+      ]},
+      {num:2,title:"Channel Marketing",dur:"Bulan 3–5",skills:[
+        {n:"Google Ads & Meta Ads",lv:"m"},{n:"Email Marketing",lv:"m"},{n:"Content Marketing",lv:"m"},{n:"Social Media Strategy",lv:"m"}
+      ]},
+      {num:3,title:"Analitik & Optimasi",dur:"Bulan 6–8",skills:[
+        {n:"Conversion Rate Optimization",lv:"l"},{n:"Marketing Automation",lv:"l"},{n:"A/B Testing",lv:"m"},{n:"Data-driven Decision Making",lv:"l"}
+      ]},
+      {num:4,title:"Portofolio & Karier",dur:"Bulan 9–10",skills:[
+        {n:"Campaign portfolio",lv:"l"},{n:"Google Certifications",lv:"l"},{n:"Freelance / agency project",lv:"l"},{n:"Personal brand",lv:"m"}
+      ]}
+    ]
+  },
+  security:{
+    title:"Cybersecurity Analyst",
+    est:"12–18 bulan",
+    phases:[
+      {num:1,title:"Fondasi IT & Jaringan",dur:"Bulan 1–3",skills:[
+        {n:"Dasar-dasar jaringan (TCP/IP)",lv:"d"},{n:"Sistem operasi Linux",lv:"d"},{n:"Kriptografi dasar",lv:"d"},{n:"CompTIA Network+ (persiapan)",lv:"d"}
+      ]},
+      {num:2,title:"Keamanan Sistem",dur:"Bulan 4–7",skills:[
+        {n:"Ethical Hacking & Pentest",lv:"m"},{n:"SIEM & Log Analysis",lv:"m"},{n:"Vulnerability Assessment",lv:"m"},{n:"Incident Response",lv:"m"}
+      ]},
+      {num:3,title:"Spesialisasi",dur:"Bulan 8–12",skills:[
+        {n:"Malware Analysis",lv:"l"},{n:"Cloud Security",lv:"l"},{n:"Threat Intelligence",lv:"m"},{n:"Security Automation (Python)",lv:"l"}
+      ]},
+      {num:4,title:"Sertifikasi & Karier",dur:"Bulan 13–18",skills:[
+        {n:"CEH / CompTIA Security+",lv:"l"},{n:"CTF Competitions",lv:"l"},{n:"Bug Bounty Program",lv:"l"},{n:"Security portfolio",lv:"m"}
+      ]}
+    ]
+  }
+};
+
+const TREN = [
+  {name:"AI / Machine Learning Engineer",cat:"teknologi",sal:"Rp 15–30 juta/bulan",grow:42,bar:84,bg:"var(--blue-50)",stk:"#185FA5",ico:`<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h1v6H9z"/><path d="M14 9h1v6h-1z"/>`},
+  {name:"Cybersecurity Analyst",cat:"teknologi",sal:"Rp 12–25 juta/bulan",grow:38,bar:76,bg:"var(--coral-50)",stk:"#993C1D",ico:`<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`},
+  {name:"Data Scientist",cat:"teknologi",sal:"Rp 12–22 juta/bulan",grow:35,bar:70,bg:"var(--purple-50)",stk:"#534AB7",ico:`<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>`},
+  {name:"Software Developer / Full Stack",cat:"teknologi",sal:"Rp 10–25 juta/bulan",grow:32,bar:64,bg:"var(--teal-50)",stk:"#0F6E56",ico:`<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`},
+  {name:"UI/UX Designer",cat:"kreatif",sal:"Rp 8–20 juta/bulan",grow:25,bar:50,bg:"var(--green-50)",stk:"#3B6D11",ico:`<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>`},
+  {name:"Content Creator / Kreator Konten",cat:"kreatif",sal:"Rp 5–20 juta/bulan",grow:28,bar:56,bg:"var(--amber-50)",stk:"#854F0B",ico:`<rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/>`},
+  {name:"Digital Marketing Specialist",cat:"bisnis",sal:"Rp 8–18 juta/bulan",grow:29,bar:58,bg:"var(--amber-50)",stk:"#854F0B",ico:`<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`},
+  {name:"Product Manager",cat:"bisnis",sal:"Rp 15–35 juta/bulan",grow:30,bar:60,bg:"var(--blue-50)",stk:"#185FA5",ico:`<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>`}
+];
+
+/* ────────────────────────────────────────────────
+   STATE
+────────────────────────────────────────────────── */
+let tesStep = 0;
+let tesAnswers = new Array(STEPS.length).fill(null);
+let scores = {dev:0,data:0,ux:0,marketing:0,security:0};
+let tesDone = false;
+
+/* ────────────────────────────────────────────────
+   NAV
+────────────────────────────────────────────────── */
+function nav(id){
+  // Guard: profil requires login
+  if(id==='profil' && !currentUser){ nav('auth'); return; }
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const screen = document.getElementById('s-'+id);
+  if(!screen) return;
+  screen.classList.add('active');
+  const btn = document.querySelector('[data-nav="'+id+'"]');
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='tes') renderTes();
+  if(id==='hasil') renderHasil();
+  if(id==='roadmap') renderRoadmapInit();
+  if(id==='tren') renderTren();
+  if(id==='profil') renderProfil();
+  if(id==='auth') switchAuthTab('login');
+}
+
+/* ────────────────────────────────────────────────
+   TES
+────────────────────────────────────────────────── */
+function renderTes(){
+  renderSidebar();
+  renderStep();
+}
+
+function renderSidebar(){
+  const el = document.getElementById('sidebar-steps');
+  el.innerHTML = STEPS.map((s,i)=>{
+    let cls='tdot-todo', txt=i+1;
+    if(i < tesStep) { cls='tdot-done'; txt='✓'; }
+    else if(i===tesStep) cls='tdot-active';
+    const status = i<tesStep?'Selesai': i===tesStep?'Sedang berjalan':'Belum dimulai';
+    return `<div class="tstep"><div class="tdot ${cls}">${txt}</div><div class="tstep-meta"><h4>${s.title}</h4><p>${status}</p></div></div>`;
+  }).join('');
+}
+
+function renderStep(){
+  const s = STEPS[tesStep];
+  const pct = Math.round((tesStep/STEPS.length)*100);
+  document.getElementById('prog-label').textContent = `Pertanyaan ${tesStep+1} dari ${STEPS.length}`;
+  document.getElementById('prog-pct').textContent = pct+'% selesai';
+  document.getElementById('prog-fill').style.width = pct+'%';
+
+  const chosen = tesAnswers[tesStep];
+  document.getElementById('tes-content').innerHTML = `
+    <div class="card q-card">
+      <h3>${s.q}</h3>
+      <div class="choices">
+        ${s.choices.map((c,i)=>`
+          <button class="choice ${chosen===i?'sel':''}" onclick="pickChoice(${i})">
+            ${svgIcon(c.ico)} ${c.t}
+          </button>`).join('')}
+      </div>
+    </div>`;
+
+  const prevBtn = document.getElementById('btn-prev');
+  prevBtn.style.visibility = tesStep===0?'hidden':'visible';
+  const nextBtn = document.getElementById('btn-next');
+  if(tesStep===STEPS.length-1){
+    nextBtn.textContent = 'Lihat Hasil ✓';
+    nextBtn.disabled = chosen===null;
+  } else {
+    nextBtn.textContent = 'Lanjut →';
+    nextBtn.disabled = chosen===null;
+  }
+}
+
+function pickChoice(i){
+  tesAnswers[tesStep] = i;
+  renderStep();
+}
+
+function tesPrev(){
+  if(tesStep>0){ tesStep--; renderSidebar(); renderStep(); }
+}
+
+function tesNext(){
+  if(tesAnswers[tesStep]===null) return;
+  if(tesStep===STEPS.length-1){
+    calcScores();
+    if(!currentUser){
+      // Tes selesai tapi belum login — arahkan ke auth dengan pesan
+      showToast('Tes selesai! Masuk untuk melihat hasilmu 🔐');
+      setTimeout(()=>nav('auth'), 600);
+      return;
+    }
+    nav('hasil');
+    return;
+  }
+  tesStep++;
+  renderSidebar();
+  renderStep();
+}
+
+function calcScores(){
+  scores={dev:0,data:0,ux:0,marketing:0,security:0};
+  tesAnswers.forEach((ans,si)=>{
+    if(ans===null) return;
+    const sc = STEPS[si].choices[ans].scores;
+    Object.keys(sc).forEach(k=>{ scores[k]=(scores[k]||0)+sc[k]; });
+  });
+  tesDone = true;
+  // Save to user history if logged in
+  const total = Object.values(scores).reduce((a,b)=>a+b,0)||1;
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const topId = sorted[0][0];
+  const topCareer = (CAREERS.find(c=>c.id===topId)||{name:topId}).name;
+  const topScore = Math.round((sorted[0][1]/total)*100);
+  saveUserStats(topCareer, topScore);
+}
+
+/* ────────────────────────────────────────────────
+   HASIL
+────────────────────────────────────────────────── */
+function renderHasil(){
+  // Guard: harus login untuk melihat hasil
+  if(!currentUser){
+    document.getElementById('hasil-subtitle').textContent='Masuk atau buat akun untuk melihat hasil rekomendasimu.';
+    document.getElementById('career-list').innerHTML=`
+      <div class="no-result" style="padding:60px 20px">
+        <div style="width:64px;height:64px;background:var(--blue-50);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+          <svg width="28" height="28" fill="none" stroke="#185FA5" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <p style="font-size:15px;font-weight:600;color:var(--gray-900);margin-bottom:6px">Hasil dikunci 🔒</p>
+        <p style="font-size:13.5px;margin-bottom:20px">Kamu perlu login terlebih dahulu untuk melihat hasil rekomendasi karier dari tes yang sudah diselesaikan.</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="nav('auth')">Masuk / Daftar →</button>
+          ${tesDone?'':`<button class="btn btn-outline" onclick="nav('tes')">Ikuti Tes Dulu</button>`}
+        </div>
+      </div>`;
+    return;
+  }
+
+  if(!tesDone){
+    document.getElementById('career-list').innerHTML=`
+      <div class="no-result">
+        <p style="margin-bottom:12px">Kamu belum mengikuti tes minat.</p>
+        <button class="btn btn-primary" onclick="nav('tes')">Mulai Tes Sekarang →</button>
+      </div>`;
+    document.getElementById('hasil-subtitle').textContent='Ikuti tes terlebih dahulu untuk melihat rekomendasi.';
+    return;
+  }
+
+  const total = Object.values(scores).reduce((a,b)=>a+b,0)||1;
+  CAREERS.forEach(c=>{ c.match = Math.round((scores[c.id]||0)/total*100); });
+  CAREERS.sort((a,b)=>b.match-a.match);
+  document.getElementById('hasil-subtitle').textContent='Berdasarkan analisis AI dari minat dan kompetensimu';
+  buildCareerList('semua');
+  document.querySelectorAll('.ftab[data-cat]').forEach(t=>{
+    t.classList.toggle('active', t.dataset.cat==='semua');
+  });
+}
+
+function buildCareerList(cat){
+  const list = document.getElementById('career-list');
+  const cards = CAREERS.map((c,idx)=>{
+    const hidden = cat!=='semua' && c.cat!==cat;
+    const top = !hidden && idx===0 && cat==='semua';
+    const rmId = c.id;
+    return `<div class="card c-card ${top?'top':''} ${hidden?'hidden':''}" data-cat="${c.cat}" onclick="goRoadmap('${rmId}')">
+      <div class="c-icon" style="background:${c.iconBg}">
+        <svg fill="none" stroke="${c.iconStroke}" stroke-width="2" viewBox="0 0 24 24">${c.iconPath}</svg>
+      </div>
+      <div class="c-body">
+        <div class="c-name-row">
+          <span class="c-name">${c.name}</span>
+          ${top?'<span class="badge-top">⭐ Terbaik untukmu</span>':''}
+        </div>
+        <p class="c-desc">${c.desc}</p>
+        <div class="tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="c-score">
+        <div class="score-pct">${c.match}%</div>
+        <div class="score-lbl">kecocokan</div>
+      </div>
+    </div>`;
+  }).join('');
+  const hasVisible = CAREERS.some(c=>cat==='semua'||c.cat===cat);
+  list.innerHTML = cards + (!hasVisible?`<div class="no-result">Tidak ada karier di kategori ini.</div>`:'');
+}
+
+function filterKarier(el, cat){
+  document.querySelectorAll('.ftab[data-cat]').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  if(!tesDone){ renderHasil(); return; }
+  buildCareerList(cat);
+}
+
+function goRoadmap(id){
+  renderRoadmapInit(id);
+  nav('roadmap');
+}
+
+/* ────────────────────────────────────────────────
+   ROADMAP
+────────────────────────────────────────────────── */
+function renderRoadmapInit(preselect){
+  const picker = document.getElementById('rm-picker');
+  if(!picker.options.length){
+    Object.keys(ROADMAPS).forEach(k=>{
+      const o=document.createElement('option');
+      o.value=k; o.textContent=ROADMAPS[k].title;
+      picker.appendChild(o);
+    });
+  }
+  if(preselect) picker.value=preselect;
+  renderRoadmap();
+}
+
+function renderRoadmap(){
+  const key = document.getElementById('rm-picker').value;
+  const rm = ROADMAPS[key];
+  if(!rm) return;
+
+  incrementRmStat();
+  document.getElementById('rm-header').innerHTML=`
+    <div class="rm-ico">
+      <svg fill="none" stroke="#185FA5" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+    </div>
+    <div class="rm-meta">
+      <h2>${rm.title}</h2>
+      <p>Estimasi waktu: ${rm.est}</p>
+    </div>
+    <div style="margin-left:auto">
+      <button class="btn btn-ghost" style="font-size:12px" onclick="downloadRoadmap('${key}')">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Cetak / Unduh
+      </button>
+    </div>`;
+
+  const lvLabel={d:'Dasar',m:'Menengah',l:'Lanjut'};
+  const lvCls={d:'lv-d',m:'lv-m',l:'lv-l'};
+  document.getElementById('rm-phases').innerHTML = rm.phases.map(p=>`
+    <div class="card phase-card">
+      <div class="phase-num">${p.num}</div>
+      <div class="phase-title">${p.title}</div>
+      <div class="phase-dur">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ${p.dur}
+      </div>
+      ${p.skills.map(s=>`<div class="sk-row"><div class="sk-dot"></div><span class="sk-name">${s.n}</span><span class="lv ${lvCls[s.lv]}">${lvLabel[s.lv]}</span></div>`).join('')}
+    </div>`).join('');
+}
+
+function downloadRoadmap(key){
+  const rm = ROADMAPS[key];
+  const lvL={d:'Dasar',m:'Menengah',l:'Lanjut'};
+  let txt = `ROADMAP KARIER — ${rm.title}\nEstimasi: ${rm.est}\nCareerPath AI © 2025\n\n`;
+  rm.phases.forEach(p=>{
+    txt += `FASE ${p.num}: ${p.title} (${p.dur})\n`;
+    p.skills.forEach(s=>{ txt += `  • ${s.n} [${lvL[s.lv]}]\n`; });
+    txt += '\n';
+  });
+  const blob = new Blob([txt],{type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `Roadmap_${rm.title.replace(/\s+/g,'_')}.txt`;
+  a.click();
+  showToast('Roadmap berhasil diunduh! 📄');
+}
+
+/* ────────────────────────────────────────────────
+   TREN
+────────────────────────────────────────────────── */
+function renderTren(){
+  const list = document.getElementById('trend-list');
+  if(list.children.length) return;
+  list.innerHTML = TREN.map(t=>`
+    <div class="card trend-card" data-tcat="${t.cat}">
+      <div class="tr-ico" style="background:${t.bg}">
+        <svg fill="none" stroke="${t.stk}" stroke-width="2" viewBox="0 0 24 24">${t.ico}</svg>
+      </div>
+      <div class="tr-info">
+        <div class="tr-name">${t.name}</div>
+        <div class="tr-sub">Rata-rata gaji: ${t.sal}</div>
+      </div>
+      <div class="tr-bar-wrap">
+        <div class="tr-bar-bg"><div class="tr-bar-fill" style="width:${t.bar}%"></div></div>
+        <div class="tr-pct-lbl">${t.bar}/100</div>
+      </div>
+      <span class="grow-badge">↑ ${t.grow}%</span>
+    </div>`).join('');
+}
+
+function filterTren(el, cat){
+  document.querySelectorAll('.ftab[data-tcat]').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.trend-card').forEach(c=>{
+    c.classList.toggle('hidden', cat!=='semua' && c.dataset.tcat!==cat);
+  });
+}
+
+/* ────────────────────────────────────────────────
+   MODAL
+────────────────────────────────────────────────── */
+const MODALS = {
+  about:`
+    <h2>Tentang CareerPath AI</h2>
+    <p>Platform rekomendasi karier berbasis AI untuk mahasiswa dan fresh graduate.</p>
+    <p style="margin-bottom:10px;font-size:13.5px;color:var(--gray-700)">CareerPath AI menggunakan algoritma kecerdasan buatan untuk menganalisis minat, kepribadian, dan kemampuan pengguna, kemudian mencocokkannya dengan profesi yang paling relevan di industri.</p>
+    <p style="font-size:13.5px;color:var(--gray-700)">Dikembangkan sebagai tugas mata kuliah <strong>Technopreneurship</strong> oleh Dewi Yulianti (2413025011), Universitas Lampung 2025.</p>
+    <div style="margin-top:20px">
+      <button class="btn btn-primary" onclick="closeModal();nav('tes')">Mulai Tes Sekarang →</button>
+    </div>`
+};
+
+function openModal(key){
+  document.getElementById('modal-body').innerHTML = MODALS[key]||'';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(e){
+  if(e && e.target!==document.getElementById('modal')) return;
+  document.getElementById('modal').classList.remove('open');
+}
+
+/* ────────────────────────────────────────────────
+   TOAST
+────────────────────────────────────────────────── */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(window._tTimeout);
+  window._tTimeout=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ────────────────────────────────────────────────
+   ICON HELPER
+────────────────────────────────────────────────── */
+function svgIcon(name){
+  const paths={
+    code:`<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+    palette:`<path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><circle cx="8.5" cy="14.5" r="1.5"/><circle cx="11" cy="9" r="1.5"/><circle cx="15.5" cy="9" r="1.5"/>`,
+    mic:`<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/>`,
+    chart:`<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+    book:`<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>`,
+    tool:`<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>`,
+    video:`<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>`,
+    users:`<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+    user:`<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
+    zap:`<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
+    globe:`<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>`,
+    heart:`<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>`,
+    shield:`<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+    server:`<rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>`
+  };
+  const d = paths[name]||paths.code;
+  return `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">${d}</svg>`;
+}
+
+/* ────────────────────────────────────────────────
+   INIT
+────────────────────────────────────────────────── */
+updateNavAuth();
+renderTes();
+renderTren();
+renderRoadmapInit();
+</script>
+</body>
+</html>
